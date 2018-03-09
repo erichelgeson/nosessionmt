@@ -4,6 +4,9 @@ grails:
     codegen:
         defaultPackage: test.mt
     gorm:
+        multiTenancy:
+            mode: DISCRIMINATOR
+            tenantResolverClass: org.grails.datastore.mapping.multitenancy.resolvers.FixedTenantResolver
         reactor:
             # Whether to translate GORM events into Reactor events
             # Disabled by default for performance reasons
