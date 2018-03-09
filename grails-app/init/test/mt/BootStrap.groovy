@@ -24,7 +24,11 @@ class BootStrap {
         def tenant = new Tenant(name:"tenant1").save(failOnError:true)
         def tenantId = tenant.id
         Tenants.withId(tenantId) {
-            new Person(name:"me1", tenantId: tenantId).save()
+            def u = new User(username: 'eric', password: 'password').save(failOnError:true)
+            def r = new Role(authority: "ROLE_USER").save(failOnError:true)
+            UserRole.create(u, r)
+
+            new Person(name:"me1").save()
         }
 
         def tenant2 = new Tenant(name:"tenant2").save(failOnError:true)
